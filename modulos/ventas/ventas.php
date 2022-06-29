@@ -18,7 +18,7 @@ GROUP BY familia;';
 function consultar_todas_las_ventas($fecha_inicio, $fecha_fin, $familia)
 {
     global $base_de_datos;
-    if ($_SESSION["administrador"] === 1) {
+    if ($_SESSION["perfil"] == 1) {
         if ($familia === "*") {
             $sql = "SELECT * FROM ventas WHERE fecha > ? AND fecha < ? ORDER BY numero_venta DESC;";
         } else {
@@ -32,7 +32,7 @@ function consultar_todas_las_ventas($fecha_inicio, $fecha_fin, $familia)
         }
     }
     $sentencia = $base_de_datos->prepare($sql);
-    if ($_SESSION["administrador"] === 1) {
+    if ($_SESSION["perfil"] === 1) {
         if ($familia === "*") {
             $sentencia->execute([$fecha_inicio, $fecha_fin]);
         } else {
