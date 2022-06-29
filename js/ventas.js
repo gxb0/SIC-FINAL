@@ -22,21 +22,21 @@ var productos_vender = [],
     TECLA_MENOS = 109,
     EL_CLIENTE_USA_TICKET = true;
 
-window.onbeforeunload = function () {
+window.onbeforeunload = function() {
     if (puede_salir == false || productos_vender.length > 0) return "Todavía no has completado la venta.";
 };
 
 $(document)
-    .ready(function () {
+    .ready(function() {
         principal();
     })
-    .ajaxStart(function () {
+    .ajaxStart(function() {
         NProgress.start();
-        intervalo_ayudante_nprogress = setInterval(function () {
+        intervalo_ayudante_nprogress = setInterval(function() {
             NProgress.inc();
         }, 1000);
     })
-    .ajaxStop(function () {
+    .ajaxStop(function() {
         clearInterval(intervalo_ayudante_nprogress);
         NProgress.done();
     });
@@ -53,23 +53,22 @@ function Producto(rowid, codigo, nombre, cantidad, precio, posicion, familia, pr
     this.familia = familia;
     this.precio_compra = parseFloat(precio_compra);
     this.existencia = parseFloat(existencia);
-
-    this.utilidad = (this.precio_venta - this.precio_compra >= 0 ? this.precio_venta - this.precio_compra : 0 );
+    this.utilidad = (this.precio_venta - this.precio_compra >= 0 ? this.precio_venta - this.precio_compra : 0);
 };
 
 
-Producto.prototype.aumentaCantidad = function () {
+Producto.prototype.aumentaCantidad = function() {
     this.cantidad += 1;
     this.refrescaTotal();
 };
 
 
-Producto.prototype.setCantidad = function (cantidad) {
+Producto.prototype.setCantidad = function(cantidad) {
     this.cantidad = parseFloat(cantidad);
     this.refrescaTotal();
 };
 
-Producto.prototype.refrescaTotal = function () {
+Producto.prototype.refrescaTotal = function() {
     this.total = this.cantidad * this.precio_venta;
 };
 
@@ -104,6 +103,7 @@ function quita_producto_local(posicion) {
         $("#codigo_producto").focus();
     }
 }
+
 function dame_total_productos_locales() {
     var numero_total = 0;
     for (var i = productos_vender.length - 1; i >= 0; i--) {
@@ -116,7 +116,7 @@ function agrega_producto_local(producto) {
     var ya_esta_en_la_lista = producto_ya_esta_en_lista(producto.codigo);
     if (ya_esta_en_la_lista !== true) {
         var _producto = new
-            Producto(
+        Producto(
             producto.rowid,
             producto.codigo,
             producto.nombre,
@@ -161,8 +161,8 @@ function dibujar_productos() {
             .empty()
             .html(
                 $("<h2>")
-                    .addClass('text-center')
-                    .html('Carrito de Compra<br><i class = "fa fa-4x fa-cart-plus"></i>')
+                .addClass('text-center')
+                .html('Visualizacion de productos Agregados<br><i class = "fa fa-4x fa-cart-plus"></i>')
             );
         $("#contenedor_total").parent().hide();
         return;
@@ -172,87 +172,87 @@ function dibujar_productos() {
         .empty()
         .append(
             $("<table>")
-                .addClass('table table-striped table-hover table-condensed')
+            .addClass('table table-striped table-hover table-condensed')
+            .append(
+                $("<thead>")
                 .append(
-                    $("<thead>")
-                        .append(
-                            $("<tr>")
-                                .append(
-                                    $("<th>")
-                                        .html('Código'),
+                    $("<tr>")
+                    .append(
+                        $("<th>")
+                        .html('Código'),
 
-                                    $("<th>")
-                                        .html('Producto'),
+                        $("<th>")
+                        .html('Producto'),
 
-                                    $("<th>")
-                                        .html('Precio'),
+                        $("<th>")
+                        .html('Precio'),
 
-                                    $("<th>")
-                                        .html('Stock'),
+                        $("<th>")
+                        .html('Existencias'),
 
-                                    $("<th>")
-                                        .html('Cantidad'),
+                        $("<th>")
+                        .html('Cantidad'),
 
-                                    $("<th>")
-                                        .html('Total'),
+                        $("<th>")
+                        .html('Total'),
 
-                                    $("<th>")
-                                        .html('Quitar')
-                                )
-                        )
+                        $("<th>")
+                        .html('Quitar')
+                    )
                 )
-                .append(
-                    $("<tbody>")
-                )
+            )
+            .append(
+                $("<tbody>")
+            )
         );
     var ayudante_total = 0;
     for (var i = productos_vender.length - 1; i >= 0; i--) {
         ayudante_total += productos_vender[i].total;
-        console.log(productos_vender[i]);
+        // console.log(productos_vender[i]);
         $("#contenedor_tabla tbody")
             .append(
                 $("<tr>")
-                    .append(
-                        $("<td>")
-                            .html(productos_vender[i].codigo),
+                .append(
+                    $("<td>")
+                    .html(productos_vender[i].codigo),
 
-                        $("<td>")
-                            .html(productos_vender[i].nombre),
+                    $("<td>")
+                    .html(productos_vender[i].nombre),
 
-                        $("<td>")
-                            .html("$" + productos_vender[i].precio_venta),
+                    $("<td>")
+                    .html("$" + productos_vender[i].precio_venta),
 
-                        $("<td>")
-                            .html(productos_vender[i].existencia),
+                    $("<td>")
+                    .html(productos_vender[i].existencia),
 
-                        $("<td>")
-                            .html(
-                                $("<div>")
-                                    .addClass('form-group')
-                                    .html(
-                                        $("<input>")
-                                            .attr("placeholder", "Cantidad")
-                                            .attr("type", "number")
-                                            .attr("data-pos", productos_vender[i].posicion)
-                                            .addClass('form-control modificar-cantidad')
-                                            .val(productos_vender[i].cantidad)
-                                    )
-                            ),
+                    $("<td>")
+                    .html(
+                        $("<div>")
+                        .addClass('form-group')
+                        .html(
+                            $("<input>")
+                            .attr("placeholder", "Cantidad")
+                            .attr("type", "number")
+                            .attr("data-pos", productos_vender[i].posicion)
+                            .addClass('form-control modificar-cantidad')
+                            .val(productos_vender[i].cantidad)
+                        )
+                    ),
 
-                        $("<td>")
-                            .html("$" + Math.round(productos_vender[i].total * 100) / 100),
+                    $("<td>")
+                    .html("$" + Math.round(productos_vender[i].total * 100) / 100),
 
-                        $("<td>")
-                            .html(
-                                $("<button>")
-                                    .addClass('btn btn-danger quitar-producto')
-                                    .attr("data-pos", productos_vender[i].posicion)
-                                    .html(
-                                        $("<i>")
-                                            .addClass('fa fa-trash')
-                                    )
-                            )
+                    $("<td>")
+                    .html(
+                        $("<button>")
+                        .addClass('btn btn-danger quitar-producto')
+                        .attr("data-pos", productos_vender[i].posicion)
+                        .html(
+                            $("<i>")
+                            .addClass('fa fa-trash')
+                        )
                     )
+                )
             );
     }
     ayudante_total = Math.round(ayudante_total * 100) / 100;
@@ -267,66 +267,67 @@ function preparar_para_realizar_venta() {
         $("#contenedor_total_modal").text("$" + total).parent().show();
     }
 }
+
 function deshabilita_para_venta() {
     $("input, button").prop("disabled", true);
     puede_salir = false;
 }
+
 function habilita_para_venta() {
     $("input, button").prop("disabled", false);
     puede_salir = true;
 }
-function realizar_venta(productos, total, cambio) {
+
+function realizar_venta(productos, total, cambio, ticket, boleta, metodo) {
     cambio = parseFloat(cambio);
     if (cambio < 0) cambio = 0;
     deshabilita_para_venta();
     $("#realizar_venta")
         .html(
             $("<i>")
-                .addClass('fa fa-spin fa-spinner')
+            .addClass('fa fa-spin fa-spinner')
         )
         .append(" Cargando...")
         .removeClass('btn-warning btn-info')
         .addClass('btn-warning');
     productos = JSON.stringify(productos);
+    ticket = JSON.stringify(ticket);
     var numero_productos = dame_total_productos_locales();
+    if (!EL_CLIENTE_USA_TICKET) ticket = false;
     $.post('./modulos/ventas/realizar_venta.php', {
         "productos": productos,
         "total": total,
+        "ticket": ticket,
         "cambio": cambio,
-    }, function (respuesta) {
+        "boleta": boleta,
+        "metodo": metodo
+    }, function(respuesta) {
         habilita_para_venta();
         ayudante_posicion = 0;
         respuesta = JSON.parse(respuesta);
         if (respuesta === true) {
-            new PNotify(
-                {
-                    title: "Exito",
-                    text: "La venta se ha realizado exitosamente.",
-                    type: "success",
-                    delay: 2000
-                }
-            );
+            new PNotify({
+                title: "Exito",
+                text: "La venta se ha realizado exitosamente.",
+                type: "success",
+                delay: 2000
+            });
             $("#modal_procesar_venta").modal("hide");
             cancelar_venta();
             $("#codigo_producto").focus();
             $("#pago_usuario").val("");
             $("#contenedor_cambio").parent().hide();
-            $("#n_boleta").parent().hide();
-
         } else {
-            new PNotify(
-                {
-                    title: "Atención",
-                    text: "La cantidad que quieres vender es mayor a la existente.",
-                    type: "error",
-                    delay: 2000
-                }
-            );
+            new PNotify({
+                title: "Atención",
+                text: "La cantidad que quieres vender es mayor a la existente.",
+                type: "error",
+                delay: 2000
+            });
             $("#modal_procesar_venta").modal("hide");
             $("#codigo_producto").focus();
             $("#pago_usuario").val("");
             $("#contenedor_cambio").parent().hide();
-            $("#n_boleta").parent().hide();
             console.log("Error, la respuesta es:", respuesta);
         }
     });
@@ -345,28 +346,28 @@ function cancelar_venta() {
 
 
 function escuchar_elementos() {
-    $("#imprimir_ticket").click(function () {
+    $("#imprimir_ticket").click(function() {
         $("#pago_usuario").focus();
     });
 
-    $(window).resize(function (event) {
+    $(window).resize(function(event) {
         $("#codigo_producto").css("width", $(".btn-group.btn-group-justified").width());
     });
-    $("#quitar_ultimo_producto").click(function () {
+    $("#quitar_ultimo_producto").click(function() {
         quitar_ultimo_producto();
     });
-    $("#preparar_venta").click(function () {
+    $("#preparar_venta").click(function() {
         preparar_para_realizar_venta();
     });
-    $("#cancelar_toda_la_venta").click(function () {
+    $("#cancelar_toda_la_venta").click(function() {
         cancelar_venta();
     });
-    $("#pago_usuario").keyup(function (evento) {
+    $("#pago_usuario").keyup(function(evento) {
         $(this).parent().removeClass('has-error');
         var pago = $(this).val(),
             cambio = pago - total;
         if (cambio >= 0 && !isNaN(pago)) {
-            $("#contenedor_cambio").text("" + cambio).parent().show();
+            $("#contenedor_cambio").text("$" + cambio).parent().show();
         } else {
             $("#contenedor_cambio").parent().hide();
         }
@@ -380,29 +381,53 @@ function escuchar_elementos() {
         }
     });
 
-
-    $("#realizar_venta").click(function () {
-        var pago = $("#pago_usuario").val(),
-            cambio = pago - total;
-        if (cambio >= 0 && !isNaN(pago)) {
-            realizar_venta(productos_vender, total, cambio, $("#imprimir_ticket").prop("checked"));
+    $("#metodo_pago").change(function() {
+        if ($("#metodo_pago option:selected").val() != 1) {
+            $("#pago_usuario").attr('disabled', true);
         } else {
-            $("#pago_usuario").animateCss("shake");
-            $("#pago_usuario").parent().addClass('has-error');
+            $("#pago_usuario").attr('disabled', false);
+        }
+    });
+
+    $("#realizar_venta").click(function() {
+        var pago = $("#pago_usuario").val(),
+            boleta = $("#numero_boleta").val(),
+            metodo = $("#metodo_pago").val(),
+            cambio = pago - total;
+
+        if (metodo == 1) {
+            metodo = 'Efectivo';
+        } else if (metodo == 2) {
+            metodo = 'Debito';
+        } else if (metodo == 3) {
+            metodo = 'Credito';
+        }
+
+        if ($("#metodo_pago option:selected").val() == 1) {
+            if (cambio >= 0 && !isNaN(pago)) {
+                realizar_venta(productos_vender, total, cambio, $("#imprimir_ticket").prop("checked"), boleta, metodo);
+            } else {
+                $("#pago_usuario").animateCss("shake");
+                $("#pago_usuario").parent().addClass('has-error');
+                // $("#numero_boleta").animateCss("shake");
+                // $("#numero_boleta").parent().addClass('has-error');
+            }
+        } else {
+            realizar_venta(productos_vender, total, cambio, $("#imprimir_ticket").prop("checked"), boleta, metodo);
         }
     });
 
 
-    $("#modal_procesar_venta").on("shown.bs.modal", function () {
+    $("#modal_procesar_venta").on("shown.bs.modal", function() {
         $("#pago_usuario").focus();
     });
-    $("#modal_procesar_venta").on("hidden.bs.modal", function () {
+    $("#modal_procesar_venta").on("hidden.bs.modal", function() {
         $("#realizar_venta").html("Realizar venta");
         $("#pago_usuario").val("").parent().removeClass('has-error');
+        $("#numero_boleta").val("");
         $("#codigo_producto").focus();
-
     });
-    $("#codigo_producto").keydown(function (evento) {
+    $("#codigo_producto").keydown(function(evento) {
         if (evento.ctrlKey) evento.preventDefault();
         switch (evento.keyCode) {
             case TECLA_ENTER:
@@ -426,15 +451,15 @@ function escuchar_elementos() {
         }
     });
 
-    $(document).on("keyup", ".modificar-cantidad", function (evento) {
+    $(document).on("keyup", ".modificar-cantidad", function(evento) {
         $(this).parent().removeClass('has-error');
         if (evento.keyCode === 13) {
             var nueva_cantidad = $(this).val(),
                 posicion = dame_posicion_producto($(this).data("pos"));
             if (
-                nueva_cantidad.length > 0
-                && nueva_cantidad > 0
-                && !isNaN(nueva_cantidad)
+                nueva_cantidad.length > 0 &&
+                nueva_cantidad > 0 &&
+                !isNaN(nueva_cantidad)
             ) {
                 productos_vender[posicion].setCantidad(nueva_cantidad);
                 dibujar_productos();
@@ -447,14 +472,14 @@ function escuchar_elementos() {
 
     });
 
-    $(document).on("mouseout", ".modificar-cantidad", function () {
+    $(document).on("mouseout", ".modificar-cantidad", function() {
         $(this).parent().removeClass('has-error');
         var nueva_cantidad = $(this).val(),
             posicion = dame_posicion_producto($(this).data("pos"));
         if (
-            nueva_cantidad.length > 0
-            && nueva_cantidad > 0
-            && !isNaN(nueva_cantidad)
+            nueva_cantidad.length > 0 &&
+            nueva_cantidad > 0 &&
+            !isNaN(nueva_cantidad)
         ) {
             productos_vender[posicion].setCantidad(nueva_cantidad);
             dibujar_productos();
@@ -467,23 +492,22 @@ function escuchar_elementos() {
     });
 
 
-    $(document).on("click", ".quitar-producto", function () {
+    $(document).on("click", ".quitar-producto", function() {
         var posicion = $(this).data("pos");
         quita_producto_local(posicion);
     });
-
 }
 
 function autocompletado_input() {
     var opciones = {
         theme: "bootstrap",
 
-        url: function (busqueda) {
+        url: function(busqueda) {
             var sugerencias = "./modulos/ventas/autocompletado.php?busqueda=" + busqueda;
             return sugerencias;
         },
 
-        getValue: function (producto) {
+        getValue: function(producto) {
             return producto.nombre;
         },
 
@@ -493,7 +517,7 @@ function autocompletado_input() {
             maxNumberOfElements: 20,
 
 
-            onChooseEvent: function () {
+            onChooseEvent: function() {
                 var producto_seleccionado = $("#codigo_producto").getSelectedItemData();
                 comprueba_si_existe_codigo(producto_seleccionado.codigo);
             },
@@ -515,7 +539,7 @@ function autocompletado_input() {
 
 
 function comprueba_si_existe_codigo(codigo) {
-    $.post('./modulos/ventas/comprueba_si_existe_codigo.php', {"codigo": codigo}, function (respuesta) {
+    $.post('./modulos/ventas/comprueba_si_existe_codigo.php', { "codigo": codigo }, function(respuesta) {
         $("#codigo_producto")
             .val("")
             .trigger(
@@ -534,4 +558,3 @@ function comprueba_si_existe_codigo(codigo) {
 
     });
 }
-

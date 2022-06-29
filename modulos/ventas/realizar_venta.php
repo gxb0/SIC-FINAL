@@ -12,6 +12,8 @@ $productos = $_POST["productos"];
 $productos = json_decode($productos);
 $total = $_POST["total"];
 $cambio = $_POST["cambio"];
-$resultado = hacer_venta( $productos, $total, $cambio);
+$boleta = $_POST["boleta"];
+$metodo = $_POST["metodo"];
+$resultado = hacer_venta( $productos, $total, $cambio, $boleta, $metodo );
 echo json_encode($resultado);
 ?>

@@ -49,7 +49,7 @@ function consultar_todas_las_ventas($fecha_inicio, $fecha_fin, $familia)
 }
 
 
-function hacer_venta($productos, $total, $cambio)
+function hacer_venta($productos, $total, $cambio, $boleta, $metodo)
 {
 
     global $base_de_datos;
@@ -62,8 +62,8 @@ function hacer_venta($productos, $total, $cambio)
         if(!$todo_correcto){
             break;
         }
-        $sentencia = $base_de_datos->prepare("INSERT INTO ventas(numero_venta, codigo_producto, nombre_producto, total, fecha, numero_productos, usuario, familia, utilidad) VALUES (?,?,?,?,?,?,?,?,?);");
-        $resultado_sentencia = $sentencia->execute(array($numero_venta, $producto->codigo, $producto->nombre, $producto->cantidad * $producto->precio_venta, date("Y-m-d H:i:s"), $producto->cantidad, $_SESSION["nombre_de_usuario"], $producto->familia, $producto->utilidad * $producto->cantidad));
+        $sentencia = $base_de_datos->prepare("INSERT INTO ventas(numero_venta, codigo_producto, nombre_producto, total, fecha, numero_productos, usuario, familia, utilidad, boleta, metodo) VALUES (?,?,?,?,?,?,?, ?, ?, ?, ?);");
+        $resultado_sentencia = $sentencia->execute(array($numero_venta, $producto->codigo, $producto->nombre, $producto->cantidad * $producto->precio_venta, date("Y-m-d H:i:s"), $producto->cantidad, $_SESSION["nombre_de_usuario"], $producto->familia, $producto->utilidad * $producto->cantidad, $boleta, $metodo));
         $todo_correcto = $todo_correcto and $resultado_sentencia;
     }
     if (!$todo_correcto) {

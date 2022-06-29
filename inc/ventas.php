@@ -175,69 +175,59 @@ $link = new PDO('mysql:host=localhost;dbname=okventa', 'root', '');
 <div id="modal_procesar_venta" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header  bg-gradient-primary text-white">
-
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Realizar venta</h4>
-                <button type="button" class="close text-white" data-dismiss="modal">&times; style=</button>
             </div>
             <div class="modal-body">
-                <h2><strong>Total: </strong><span id="contenedor_total_modal"></span></h2>
-                <hr>
-                <h2><strong>Vuelto: </strong><span id="contenedor_cambio"></span></h2>
-                <hr>
+                <h2 hidden="hidden"><strong>Total: </strong><span id="contenedor_total_modal"></span></h2>
                 <div class="row">
                     <div class="form-group">
-                        <div class="col-sm-12 col-md-12">
+                        <div class="col-xs-12 col-md-10">
+                            <label for="pago_usuario">Metodo de pago</label>
+                            <select class="form-control" name="" id="metodo_pago">
+                                <option value="1">Efectivo</option>
+                                <option value="2">Débito</option>
+                                <option value="3">Crédito</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-md-10">
                             <label for="pago_usuario">El cliente paga con...</label>
-                            <input placeholder="El cliente paga con..." type="number" id="pago_usuario"
-                                   class="form-control">
+                            <input placeholder="El cliente paga con..." type="number" id="pago_usuario" class="form-control">
                         </div>
-
-                        <hr>
-                        <div class="col-xs-12 col-md-12">
-                            <input placeholder="Ingresar Numero de Boleta" type="number"
-                                   class="form-control">
+                        <div class="col-xs-12 col-md-10">
+                            <label for="numero_boleta">Número de Boleta</label>
+                            <input require placeholder="123456789" type="text" id="numero_boleta" class="form-control">
                         </div>
-                        <select class="form-control" aria-label="Default select example">
-                            <option selected>Tipo de Pago</option>
-                            <option value="1">Efectivo</option>
-                            <option value="2">Debito</option>
-                            <option value="3">Credito</option>
-                        </select>
                     </div>
-                    <!--<div class="col-xs-12 col-md-2" style="display:none">
+                    <div class="col-xs-12 col-md-2">
                         <div class="checkbox checkbox-primary checkbox-circle">
                             <input type="checkbox" id="imprimir_ticket">
                             <label for="imprimir_ticket">
                                 Ticket <i class="fa fa-ticket"></i>
                             </label>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
-
-
-
-
+                <h2 hidden="hidden">Cambio: <span id="contenedor_cambio"></span></h2>
             </div>
-           <div class="modal-footer">
-                <!--<div class="row">
+            <div class="modal-footer">
+                <div class="row">
                     <div class="col-xs-12">
-                        <div class="alert">
-                            <span hidden="hidden" id="mostrar_resultados_eliminar"></span>
+                        <div hidden="hidden" class="alert">
+                            <span id="mostrar_resultados_eliminar"></span>
                         </div>
                     </div>
-                </div>-->
-
-
-                <button id="realizar_venta" class="form-control btn btn-success" >Realizar venta</button>
-
-
-
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button id="realizar_venta" class="form-control btn btn-info">Realizar venta</button>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
+</div>
 
 
 <script src="vendor/jquery/jquery.min.js"></script>
