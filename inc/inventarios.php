@@ -1,11 +1,9 @@
 <?php
 if (!isset($_SESSION)) exit("<script>window.location.href = '../';</script>");
-?>
-<?php if ($_SESSION["perfil"] == 3 || $_SESSION["perfil"] == 4 ) {
-exit('<h1 class="text-center">Lo sentimos, solamente el administrador y bodeguero puede ver esta sección<br><br><i class="fa fa-hand-paper-o fa-4x"></i></h1>');
+
+
 ?>
 
-<?php }?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,13 +17,13 @@ exit('<h1 class="text-center">Lo sentimos, solamente el administrador y bodeguer
 
     <title>SB Admin 2 - Dashboard</title>
 
-    <!-- Custom fonts for this template-->
+ 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
-    <!-- Custom styles for this template-->
+    
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
@@ -35,14 +33,14 @@ exit('<h1 class="text-center">Lo sentimos, solamente el administrador y bodeguer
         <div id="wrapper">
             <div class="container-fluid">
 
-                <!-- Page Heading -->
+         
 
 
                 <div class="row ">
 
                     <div class="col-lg-3">
 
-                        <!-- Circle Buttons -->
+                        
                         <div class="card shadow mb-4 card">
                             <div class="card-header py-3 bg-gradient-primary text-white">Registrar Nuevo Producto</div>
                                 <div class="col-lg-9" id="contenedor_formulario">
@@ -108,7 +106,7 @@ exit('<h1 class="text-center">Lo sentimos, solamente el administrador y bodeguer
 
                         </div>
                     </div>
-                    <!-----------------------------------------hasta aqui seccion ingreso inicio de caja----------------------------->
+                 
                     <div class="col-md-9 col-xs-5 mb-7">
 
                         <div class="card shadow mb-7">
@@ -307,7 +305,7 @@ exit('<h1 class="text-center">Lo sentimos, solamente el administrador y bodeguer
         NProgress.start();
     });
 
-
+</script>
 
     <script src="vendor/jquery/jquery.min.js"></script>
 
@@ -317,11 +315,13 @@ exit('<h1 class="text-center">Lo sentimos, solamente el administrador y bodeguer
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
-</script>
-<script src="./lib/eac.js"></script>
+
 
 <script src="./lib/eac.js"></script>
 <link rel="stylesheet" href="./css/eac.css">
+
+
+
 
 
 </body>

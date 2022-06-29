@@ -13,7 +13,7 @@ require_once RAIZ . "/modulos/db.php";
 require_once RAIZ . "/modulos/funciones.php";
 require_once RAIZ . "/modulos/inventario/inventario.php";
 inicia_sesion_segura();
-if ($_SESSION["administrador"] !== 1) {
+if ($_SESSION["perfil"] !== 1) {
 	echo json_encode("Tú no eres administrador");
 	exit();
 }  
