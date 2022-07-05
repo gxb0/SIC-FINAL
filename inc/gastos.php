@@ -77,7 +77,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Egresos Ingresados</h6>
                                 </div>
                                 <div class="card-body">
-                    <div class="table-responsive" id="datatable">
+                                    <div class="table-responsive" id="datatable">
                                                 <table class="table table-bordered" id="dataTable" >
                                                     <thead class="table-dark">
                                                     <tr>

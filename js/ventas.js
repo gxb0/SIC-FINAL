@@ -367,9 +367,9 @@ function escuchar_elementos() {
         var pago = $(this).val(),
             cambio = pago - total;
         if (cambio >= 0 && !isNaN(pago)) {
-            $("#contenedor_cambio").text("$" + cambio).parent().show();
+            $("#contenedor_cambio").text("Vuelto: $" + cambio).parent().show();
         } else {
-            $("#contenedor_cambio").parent().hide();
+            $("#contenedor_cambio").text("Vuelto: $0").parent().show();
         }
         if (evento.keyCode === 13) {
             if (cambio >= 0 && !isNaN(pago)) {

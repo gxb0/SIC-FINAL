@@ -35,7 +35,7 @@ if(!isset($_SESSION)) exit("<script>window.location.href = '../';</script>");
                                     <h5 class="m-0 font-weight-bold">Productos Con Stock Bajo</h5>
                                 </div>
                                 <div class="card-body">
-                                   Aquí se muestran aquellos productos cuya cantidad es menor a la permitida
+                                   Aquí se muestran aquellos productos cuyo stock es por debajo del minimo.
 
                                    <div class="form-group">
 <br>
@@ -52,8 +52,8 @@ if(!isset($_SESSION)) exit("<script>window.location.href = '../';</script>");
                                                        <tr>
                                                            <th>Código</th>
                                                            <th>Nombre</th>
-                                                           <th>Existencia</th>
-                                                           <th>Existencia permitida</th>
+                                                           <th>Stock</th>
+                                                           <th>Stock Minimo</th>
                                                            <th>Familia</th>
                                                        </tr>
                                                        </thead>

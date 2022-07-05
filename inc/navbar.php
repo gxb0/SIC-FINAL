@@ -61,7 +61,7 @@ if (!isset($_SESSION)) exit("<script>window.location.href = '../';</script>");
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item" style="display:<?php echo $_SESSION["perfil"] == 1 || $_SESSION["perfil"] == 3 ? 'block' : 'none' ;?>" id="elem_ventas"">
+        <li class="nav-item" style="display:<?php echo $_SESSION["perfil"] == 1 || $_SESSION["perfil"] == 3 ? 'block' : 'none' ;?>" id="elem_ventas">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
@@ -72,6 +72,7 @@ if (!isset($_SESSION)) exit("<script>window.location.href = '../';</script>");
                     <h6 class="collapse-header">Deseo ir A:</h6>
                     <a id="elem_caja" class="collapse-item" href="./ventas">Realizar Venta</a>
                     <a id="elem_caja" class="collapse-item" href="./reportes-ventas">Reporte de Ventas</a>
+                    <a id="elem_caja" class="collapse-item" href="./boleta">Ver Boletas</a>
 
 
 
@@ -367,14 +368,14 @@ if (!isset($_SESSION)) exit("<script>window.location.href = '../';</script>");
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="./usuarios">
+                            <a class="dropdown-item" href="./usuarios" style="display:<?php echo $_SESSION["perfil"] == 1 ? 'block' : 'none' ;?>">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Usuarios
                             </a>
-                            <a class="dropdown-item" href="./ajustes">
+                            <!--<a class="dropdown-item" href="./ajustes">
                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Ajustes
-                            </a>
+                            </a>-->
 
                             <div class="dropdown-divider"></div>
 

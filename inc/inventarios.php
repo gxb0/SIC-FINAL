@@ -107,14 +107,12 @@ if (!isset($_SESSION)) exit("<script>window.location.href = '../';</script>");
                         </div>
                     </div>
                  
-                    <div class="col-md-9 col-xs-5 mb-7">
+                    <div class="col-md-9 col-xs-5 mb-6">
 
                         <div class="card shadow mb-7">
-                            <div class="card-header py-3  bg-gradient-success text-white">
-                                <h6 class="m-0 font-weight-bold  text-white">Productos Ingresados</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="col-xs-10 col-md-12">
+                            
+                            
+                                
                                     <div class="form-group">
                                         <input type="text" id="buscar_producto" class="form-control"
                                                placeholder="Buscar producto por id o nombre">
@@ -133,8 +131,8 @@ if (!isset($_SESSION)) exit("<script>window.location.href = '../';</script>");
                                                         <th class="text-center">Precio de compra</th>
                                                         <th class="text-center">Precio de venta</th>
                                                         <th class="text-center">Utilidad</th>
-                                                        <th class="text-center">Existencia</th>
-                                                        <th class="text-center">Existencia mínima</th>
+                                                        <th class="text-center">Stock</th>
+                                                        <th class="text-center">Stock Minimo</th>
                                                         <th class="text-center">Familia</th>
                                                         <th class="text-center">Opciones</th>
                                                     </tr>

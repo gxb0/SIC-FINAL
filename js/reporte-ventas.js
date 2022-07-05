@@ -18,7 +18,7 @@ function Producto(numero, nombre) {
     this.nombre = nombre;
 }
 
-function Venta(numero_venta, fecha, nombre_producto, numero_productos, total, usuario, familia, utilidad) {
+function Venta(numero_venta, fecha, nombre_producto, numero_productos, total, usuario, familia, utilidad, boleta, metodo) {
     this.numero_venta = numero_venta;
     this.fecha = fecha;
     this.lista_productos = [];
@@ -28,6 +28,8 @@ function Venta(numero_venta, fecha, nombre_producto, numero_productos, total, us
     this.usuario = usuario;
     this.familia = familia;
     this.utilidad = utilidad;
+    this.boleta = boleta;
+    this.metodo = metodo;
 }
 
 Venta.prototype.agrega_producto_lista = function (numero_productos, nombre_producto) {
@@ -239,7 +241,7 @@ function dibuja_tabla_ventas(ventas) {
                             $("<tr>")
                                 .append(
                                     $("<th>")
-                                        .html('Número de venta'),
+                                        .html('N° de venta'),
 
                                     $("<th>")
                                         .html('Fecha'),
@@ -248,13 +250,13 @@ function dibuja_tabla_ventas(ventas) {
                                         .html('Productos'),
 
                                     $("<th>")
-                                        .html('Número de productos'),
+                                        .html('N° de productos'),
 
                                     $("<th>")
                                         .html('Total'),
 
-                                    $("<th>")
-                                        .html('Utilidad'),
+                                    //$("<th>")
+                                      //.html('N°Boleta'),
 
                                     $("<th>")
                                         .html('Usuario')
@@ -277,8 +279,9 @@ function dibuja_tabla_ventas(ventas) {
             var posicion = dame_posicion_venta(ventas_totales, ventas[i].numero_venta);
             ventas_totales[posicion].agrega_producto_lista(ventas[i].numero_productos, ventas[i].nombre_producto);
             ventas_totales[posicion].total = parseFloat(ventas_totales[posicion].total) + parseFloat(subtotal);
-            ventas_totales[posicion].utilidad = parseFloat(ventas_totales[posicion].utilidad) + parseFloat(subtotal_utilidad);
+            //ventas_totales[posicion].utilidad = parseFloat(ventas_totales[posicion].utilidad) + parseFloat(subtotal_utilidad);
             numero_productos += parseFloat(ventas[i].numero_productos);
+        
         } else {
             ventas_totales.push(
                 new Venta(
@@ -289,7 +292,8 @@ function dibuja_tabla_ventas(ventas) {
                     subtotal,
                     ventas[i].usuario,
                     ventas[i].familia,
-                    subtotal_utilidad
+                    //ventas[i].metodo,
+                    //subtotal_utilidad
                 )
             );
             ayudante_numero_venta = ventas[i].numero_venta;
@@ -297,7 +301,7 @@ function dibuja_tabla_ventas(ventas) {
     }
     for (var i = ventas_totales.length - 1; i >= 0; i--) {
         ayudante_total += parseFloat(ventas_totales[i].total);
-        ayudante_utilidad += parseFloat(ventas_totales[i].utilidad);
+        //ayudante_utilidad += parseFloat(ventas_totales[i].boleta);
         $("#contenedor_tabla tbody")
             .append(
                 $("<tr>")
@@ -307,13 +311,13 @@ function dibuja_tabla_ventas(ventas) {
                         $("<td>").html(ventas_totales[i].productos_como_html()),
                         $("<td>").html(ventas_totales[i].numero_productos),
                         $("<td>").html("$" + ventas_totales[i].total),
-                        $("<td>").html("$" + ventas_totales[i].utilidad),
+                        //$("<td>").html(ventas_totales[i].metodo),
                         $("<td>").html(ventas_totales[i].usuario)
                     )
             );
     }
     $("#contenedor_tabla").animateCss("fadeInUp");
     $("#mostrar_total").text(ayudante_total).parent().show();
-    $("#mostrar_utilidad").text(ayudante_utilidad).parent().show();
+    //$("#mostrar_utilidad").text(ayudante_utilidad).parent().show();
     $("#generar_reporte").show();
 }
